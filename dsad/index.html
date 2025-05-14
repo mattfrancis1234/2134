@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Showroom</title>
+
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+     
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            padding: 1.5rem 3rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .nav-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF0000;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #FF0000;
+        }
+
+       
+        .hero {
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: #FF0000;
+            padding: 1rem 2.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc0000;
+        }
+
+      
+        .about {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+      
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #111;
+            color: white;
+        }
+
+    
+        .discover-btn {
+            background-color: #FF0000;
+            padding: 1rem 3rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .discover-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Car Showroom</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div>
+            <h1>Welcome to the Car Showroom</h1>
+            <p>Your dream car is waiting for you.</p>
+            <a href="discover.html" class="btn-primary">Discover More</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>We offer a wide variety of cars that cater to every need and lifestyle. From family cars to luxury sports cars, we have it all.</p>
+        <a href="discover.html" class="discover-btn">Explore Our Collection</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Car Showroom. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+     
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) { 
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjusting for navbar height
+                        behavior: 'smooth'
+                    });
+                } else if (targetId === 'contact.html') {
+                 
+                    window.location.href = 'contact.html'; 
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

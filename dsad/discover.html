@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Discover Ferrari Models</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(to right, #0f0f0f, #1c1c1c);
+            color: #eee;
+            font-size: 16px; 
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            padding: 1rem 2rem; 
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4); 
+        }
+
+        .nav-logo {
+            font-size: 1.75rem; 
+            font-weight: bold;
+            color: #FF0000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem; 
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.9rem; 
+        }
+
+        .nav-links li a:hover {
+            color: #FF0000;
+        }
+
+        header {
+            margin-top: 3.5rem; 
+            height: 50vh; 
+            background: url('https://images.unsplash.com/photo-1606813903277-3e3a25dfb1cc') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5); 
+            z-index: 0;
+        }
+
+        header h1 {
+            position: relative;
+            font-size: 2.75rem; 
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 1.5px 1.5px 8px rgba(0, 0, 0, 0.8); 
+            animation: fadeInDown 1s ease-out;
+            text-align: center; 
+        }
+
+        @keyframes fadeInDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.75rem; 
+            margin: 2.5rem 0 1rem; 
+            font-family: 'Playfair Display', serif;
+            color: #FF0000;
+        }
+
+        .divider {
+            width: 60px; 
+            height: 3px; 
+            background-color: #FF0000;
+            margin: 0 auto 1.5rem; 
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 1.5rem; 
+            overflow-x: auto;
+            padding: 1.5rem; 
+            scroll-snap-type: x mandatory;
+            justify-content: flex-start; 
+        }
+
+        .card {
+            backdrop-filter: blur(10px); 
+            background-color: rgba(255, 255, 255, 0.04); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 0.75rem; 
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); 
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            flex: 0 0 auto;
+            min-width: 280px; 
+            max-width: 300px; 
+            scroll-snap-align: start;
+            color: white;
+        }
+
+        .card:hover {
+            transform: scale(1.03); 
+            box-shadow: 0 10px 24px rgba(255, 0, 0, 0.4); 
+
+        .card img {
+            width: 100%;
+            height: 180px; 
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 0.8rem 1rem; 
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem; 
+            color: #ff3333;
+            font-weight: bold;
+            margin-bottom: 0.4rem; 
+        }
+
+        .card-content p {
+            font-size: 0.9rem; 
+            line-height: 1.4; 
+            color: #ccc;
+        }
+
+        .specs-btn {
+            margin-top: 0.8rem; 
+            background-color: #FF0000;
+            color: white;
+            padding: 0.5rem 1rem; 
+            border: none;
+            border-radius: 0.4rem; 
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem; 
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .specs-btn:hover {
+            background-color: #b30000;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem; 
+            margin-top: 2.5rem; 
+            font-size: 0.85rem; 
+        }
+
+        .social-links a {
+            color: white;
+            background-color: #FF0000;
+            padding: 0.4rem 0.8rem; 
+            margin: 0 0.2rem; 
+            border-radius: 0.4rem; 
+            text-decoration: none;
+            transition: 0.3s ease;
+            font-size: 0.9rem; 
+        }
+
+        .social-links a:hover {
+            background-color: #cc0000;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem; 
+            }
+
+            .nav-logo {
+                font-size: 1.5rem; 
+            }
+
+            .nav-links {
+                gap: 1rem; 
+            }
+
+            .nav-links li a {
+                font-size: 0.8rem; 
+            }
+
+            header {
+                height: 40vh; 
+                margin-top: 3rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin: 2rem 0 1rem; 
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem; 
+                gap: 1rem; 
+            }
+
+            .card {
+                width: 95%; 
+                margin-bottom: 1rem; 
+                min-width: auto; 
+                max-width: none; 
+            }
+
+            .card img {
+                height: 160px;
+            }
+
+            .card-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .card-content p {
+                font-size: 0.85rem;
+            }
+
+            .specs-btn {
+                font-size: 0.8rem; 
+                padding: 0.4rem 0.9rem;
+            }
+
+            footer {
+                padding: 1rem; 
+                font-size: 0.8rem;
+            }
+
+            .social-links a {
+                font-size: 0.85rem; 
+                padding: 0.3rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">Ferrari</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#discover">Discover</a></li>
+            <li><a href="index.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Discover Ferrari Models</h1>
+    </header>
+
+    <section id="discover">
+        <div class="section-title">Ferrari Lineup</div>
+        <div class="divider"></div>
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://vrrb-prod-s3.s3.us-west-1.amazonaws.com/strapi/Roma_Spider_Thumb_c51080d0d0.png" alt="Ferrari Roma">
+                <div class="card-content">
+                    <h3>Ferrari Roma</h3>
+                    <p>Elegant and high-performing grand tourer designed for luxury cruising.</p>
+                    <a href="ferrari_roma_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://www.hagginoaks.com/wp-content/uploads/2019/05/PNGPIX-COM-Red-Ferrari-488-GTB-Car-PNG-Image-min.png" alt="Ferrari 488 GTB">
+                <div class="card-content">
+                    <h3>Ferrari 488 GTB</h3>
+                    <p>A high-speed sports car with turbocharged V8 engine and stunning agility.</p>
+                    <a href="ferrari_488_gtb_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://content.carlelo.com/uploads/variant-option/QstLZzdTOA2vjT6ikKOj82yy1frTI2XwGqbbZIop.png" alt="Ferrari Portofino M">
+                <div class="card-content">
+                    <h3>Ferrari Portofino M</h3>
+                    <p>A convertible GT with a retractable hardtop, combining elegance and performance.</p>
+                    <a href="ferrari_portofino_m_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://www.pngarts.com/files/8/Ferrari-SF90-Stradale-PNG-Image-Background.png" alt="Ferrari SF90 Stradale">
+                <div class="card-content">
+                    <h3>Ferrari SF90 Stradale</h3>
+                    <p>A hybrid supercar with over 1000 horsepower and all-wheel drive innovation.</p>
+                    <a href="ferrari_sf90_stradale_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://www.topgear.com/sites/default/files/2022/03/3_0.jpg" alt="Ferrari 812 Superfast">
+                <div class="card-content">
+                    <h3>Ferrari 812 Superfast</h3>
+                    <p>Ferrari’s most powerful naturally aspirated V12 with blistering performance.</p>
+                    <a href="ferrari_812_superfast_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://di-uploads-pod36.dealerinspire.com/ferrarioftampabay/uploads/2025/01/sp3-1.png" alt="Ferrari Daytona SP3">
+                <div class="card-content">
+                    <h3>Ferrari Daytona SP3</h3>
+                    <p>A rare tribute to racing heritage with dramatic styling and V12 roar.</p>
+                    <a href="ferrari_daytona_sp3_specs.html" class="specs-btn">View Specs</a>
+                </div>
+            </div>
+
+
+            </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ferrari Showcase. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ferrari/?hl=en">Instagram</a>
+            <a href="https://x.com/ferrari">Twitter</a>
+            <a href="https://www.youtube.com/channel/UCd8iY-kEHtaB8qt8MH--zGw">YouTube</a>
+        </div>
+    </footer>
+
+</body>
+</html>
